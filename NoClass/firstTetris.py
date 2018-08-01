@@ -5,6 +5,7 @@ import random
 # 경계 있는 사각형 그리기 
 def draw(x,y):
 	solid_color=(70,70,70)
+	# outside 크기 20*20 
 	solid=pygame.image.load("outside.png").convert()
 	solid.fill(solid_color,(1,1,18,18))
 	screen.blit(solid,(x,y))
@@ -84,7 +85,7 @@ def falling(tet,board,where):
 
 # tetromino 그리기
 def draw_tet(tetromino):
-	pygame.draw.rect(screen,color,(50,50,side*len(board[0]),side*len(board)),1)
+	
 	for row in range(len(tetromino.shape)):
 		for col in range(len(tetromino.shape[row])):
 			if tetromino.shape[row][col]!=0:
@@ -94,7 +95,7 @@ def draw_tet(tetromino):
 
 # 게임판 그리기
 def draw_board(board):
-
+	pygame.draw.rect(screen,color,(50,50,side*len(board[0]),side*len(board)),1)
 	for row in range(len(board)):
 		for col in range(len(board[row])):
 			if board[row][col]!=0:
@@ -117,17 +118,15 @@ def land(tetromino,board):
 cols=10
 # 세로
 rows=16
-#한 변의 길이
+# 한 변의 길이(outside.png)
 side=20
 
 
 # 게임판 0으로 초기화 (0: 비었다, 1: 채워졌다)
 board=[[0 for col in range(cols)] for row in range(rows)]
 
-# 첫 위치
-first_pos=[0,1]
 
-# tetromino(테트리스 모양) 담아둘 스택
+# tetromino(테트리스 모양) 담아둘 배열
 shapes=[]
 # shapes 인덱스 용
 i=-1
