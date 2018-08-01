@@ -2,7 +2,7 @@ import pygame
 import firstShape
 import random
 
-
+# 경계 있는 사각형 그리기 
 def draw(x,y):
 	solid_color=(70,70,70)
 	solid=pygame.image.load("outside.png").convert()
@@ -17,8 +17,7 @@ def line_check(board):
 		checker=0
 		for col in range(len(board[row])):
 			checker+=board[row][col]
-			print(checker)
-
+			
 			# 칸이 채워져있으면 1이다. 한 줄 다 채워져 있다 col 개수
 			if checker==len(board[0]):
 				
