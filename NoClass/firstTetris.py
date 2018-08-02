@@ -187,8 +187,11 @@ while not finish:
 		if not collision:
 			# 키 눌렀을 때
 			pressed=pygame.key.get_pressed()
-			#if pressed[pygame.K_UP]: 
-			#	shapes[i].leftTop[0]-=1
+			
+
+			if pressed[pygame.K_UP]: 
+				shapes[i].rotate()
+				
 
 			if pressed[pygame.K_DOWN]: 
 				# potential 설정
@@ -264,7 +267,7 @@ while not finish:
 
 
 	pygame.display.flip()
-	clock.tick(7)	
+	clock.tick(6)	
 
 		
 		
