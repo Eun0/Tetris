@@ -94,6 +94,12 @@ function
       
       &nbsp; \* land(tetromino,board) : land tetromino on board
       
+ 
+## Sample
+
+![sample_tetris](https://user-images.githubusercontent.com/33515697/43587171-89741f86-96a4-11e8-8c1e-4ebd21183195.gif)
+
+      
       
       
       
