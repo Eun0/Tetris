@@ -5,11 +5,10 @@ import copy
 
 
 # 경계 있는 정사각형 그리기 (block)
-def draw(x,y):
-	solid_color=(70,70,70)
+def draw(x,y,color):
 	# outside.png 크기 20*20 
 	solid=pygame.image.load("outside.png").convert()
-	solid.fill(solid_color,(1,1,18,18))
+	solid.fill(color,(1,1,18,18))
 	screen.blit(solid,(x,y))
 
 
@@ -53,6 +52,10 @@ def taken(tetromino,board):
 				elif col+tetromino.pot_leftTop[1]>=len(board[0]):
 					taken=True
 					break
+				# 바닥 경계
+				elif row+tetromino.pot_leftTop[0]>=len(board):
+					taken=True
+					break
 				# 게임판 이미 채워진 경우
 				elif board[row+tetromino.pot_leftTop[0]][col+tetromino.pot_leftTop[1]]:
 					taken=True
@@ -93,7 +96,9 @@ def falling(tet,board,where):
 
 # tetromino 그리기
 def draw_tet(tetromino):
-	
+
+	color=(30,80,10)	
+
 	for row in range(len(tetromino.shape)):
 		for col in range(len(tetromino.shape[row])):
 			if tetromino.shape[row][col]!=0:
@@ -101,11 +106,13 @@ def draw_tet(tetromino):
 				x=20*(col+tetromino.leftTop[1])+50
 				y=20*(row+tetromino.leftTop[0])+50
 				# block 그리기
-				draw(x,y)
+				draw(x,y,color)
 
 
 # 게임판 그리기
 def draw_board(board):
+	solid_color=(70,70,70)
+
 	# 경계선 그리기 (시작 위치 (50,50) 으로 함)
 	pygame.draw.rect(screen,color,(50,50,side*len(board[0]),side*len(board)),1)
 
@@ -115,7 +122,7 @@ def draw_board(board):
 			if board[row][col]!=0:
 				x=20*col+50
 				y=20*row+50
-				draw(x,y)
+				draw(x,y,solid_color)
 
 
 # tetromino board에 안착하기
@@ -212,14 +219,10 @@ while not finish:
 				# kick = 현재 가로 위치+ 회전한 모양의 가로 길이
 				kick=shapes[i].leftTop[1]+len(pot_tet[0])
 
-				# 경계 넘어가면 kick_checker=True
-				kick_checker=False
-
 				# kick이 게임판 가로보다 길다.
 				# => 경계 넘어감
 				if kick>cols:
 
-					kick_checker=True
 
 					# out = 얼만큼 넘어갔는 지
 					out=kick-cols
