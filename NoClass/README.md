@@ -4,7 +4,6 @@ A simple tetris
 
 you can set the size of board by changing cols and rows in tetris.py
 
-Rotation function is not yet implemented.
 
 [Reference url](https://gamedevelopment.tutsplus.com/tutorials/implementing-tetris-collision-detection--gamedev-852)
 
@@ -13,6 +12,8 @@ Rotation function is not yet implemented.
 function
  - Random tetromino
  - Falling tetromino
+ - moving tetromino by key
+ - rotate tetromino
  - Check line
  - Gameover
  
@@ -28,11 +29,16 @@ function
 
 1. Shape class
 
-    attribute: num, leftTop, potLeftTop
+    attribute : num, leftTop, potLeftTop, rotation
   
     - num : it will decied shape of tetromino
     - leftTop : tetromino's left and top coordinates
     - potLeftTop : potential left and top coordinates, we use it when tetromino is falling
+    - rotation : decide whether rotate or not
+    
+    method : rotate()
+    
+    - rotate() : rotate tetromino!
     
     
 2. Tetris.py
@@ -87,6 +93,12 @@ function
       &nbsp;&nbsp;&nbsp;&nbsp; \- if safe is False, land tetromino!
       
       &nbsp; \* land(tetromino,board) : land tetromino on board
+      
+ 
+## Sample
+
+![sample_tetris](https://user-images.githubusercontent.com/33515697/43587171-89741f86-96a4-11e8-8c1e-4ebd21183195.gif)
+
       
       
       
